@@ -35,13 +35,14 @@ class ShowOrdersView(ListView):
     model = Order
     template_name = 'show_orders.html'
     context_object_name = 'orders'
+    object_list = None
 
     def post(self, request):
         brand = request.POST.get('brand')
         if brand:
             self.queryset = Order.objects.filter(vehicle__model__brand__contains=brand)
-
-        return render(request, template_name=self.template_name, context={'orders': self.queryset.all()})
+        self.object_list = self.get_queryset()
+        return self.render_to_response(self.get_context_data())
 
 
 class ShowOrderDetailView(ListView):
