@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Order Detail</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Service</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for detail in order_detail %}
+    <tr>
+        <th scope="row">{{ detail.id }}</th>
+        <td>{{ detail.service.name }}</td>
+        <td>{{ detail.quantity }}</td>
+        <td>{{ detail.price }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
